@@ -19,9 +19,10 @@ public:
 
 protected:
     void OnBootstrap() override;
+    void OnShutdown() override;
 
     static void* OnCreateHandle(Red::Handle<Red::ISerializable>& aHandle, Red::ISerializable* aObject);
-    static void Shrink();
+    static void Shrink(const char* aReason);
 
     template<typename T>
     inline static T* GetValuePtr(T* aPtr, uint32_t aOffset)
@@ -47,4 +48,4 @@ protected:
     inline static std::shared_mutex s_snapshotLock;
     inline static Core::Map<Red::CName, ClassDesc> s_snapshot;
 };
-}
+} // namespace App
